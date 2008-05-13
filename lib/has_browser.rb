@@ -28,4 +28,16 @@ module HasBrowser
       end
     end
   end
+  
+  module AssociationProxyMethods
+    def self.included(receiver)
+      receiver.class_eval do
+        alias_method_chain :method_missing, :has_browser
+      end
+    end
+    
+    def method_missing_with_has_browser(method, *args, &block)
+      method == :browse && proxy_reflection.klass.respond_to?(:has_browser_allowed_finders) ? proxy_reflection.klass.browse(self, args.extract_options!) : method_missing_without_has_browser(method, *args, &block)
+    end
+  end
 end

@@ -9,3 +9,7 @@ class PhotoMock
   
   has_browser :title, :description, :without_args => [:order_by_date, :order_by_relevance]
 end
+
+class AssocProxyMock
+  include HasBrowser::AssociationProxyMethods
+end
