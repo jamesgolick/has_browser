@@ -19,7 +19,7 @@ module HasBrowser
   module BrowserMethods
     def browse(params={})
       invalid_finders = params.keys.reject { |k| has_browser_allowed_finders.values.inject(&:+).include?(k) }
-      raise InvalidFinder.new(invalid_finders.to_s) unless invalid_finders.empty?
+      raise InvalidFinder.new(invalid_finders.join(', ').to_s) unless invalid_finders.empty?
     end
   end
 end
