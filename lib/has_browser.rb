@@ -20,6 +20,10 @@ module HasBrowser
     def browse(params={})
       invalid_finders = params.keys.reject { |k| has_browser_allowed_finders.values.inject(&:+).include?(k) }
       raise InvalidFinder.new(invalid_finders.join(', ').to_s) unless invalid_finders.empty?
+      
+      params.inject(self) do |proxy, finder|
+        has_browser_allowed_finders[:with_args].include?(finder.first.to_sym) ? proxy.send(finder.first, finder.last) : proxy.send(finder.first)
+      end
     end
   end
 end

@@ -4,7 +4,7 @@ class HasBrowserTest < Test::Unit::TestCase
   def test_should_call_appropriate_finders_when_somebody_browses_by_parameters
     PhotoMock.expects(:title).with('something').returns(PhotoMock)
     PhotoMock.expects(:description).with('lorem ipsum dolor').returns(PhotoMock)
-    PhotoMock.expects(:order_by_date)
+    PhotoMock.expects(:order_by_date).returns(PhotoMock)
     
     PhotoMock.browse(:title => 'something', :description => 'lorem ipsum dolor', :order_by_date => 'true')
   end
