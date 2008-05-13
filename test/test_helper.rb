@@ -1,5 +1,6 @@
 require "rubygems"
 require "mocha"
+require "activesupport"
 require "test/unit"
 require File.dirname(__FILE__)+"/../lib/has_browser"
 

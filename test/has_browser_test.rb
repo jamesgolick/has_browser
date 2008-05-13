@@ -1,8 +1,17 @@
 require File.dirname(__FILE__)+'/test_helper'
 
 class HasBrowserTest < Test::Unit::TestCase
-  # Replace this with your real tests.
-  def test_this_plugin
-    flunk
+  def test_should_call_appropriate_finders_when_somebody_browses_by_parameters
+    PhotoMock.expects(:title).with('something').returns(PhotoMock)
+    PhotoMock.expects(:description).with('lorem ipsum dolor').returns(PhotoMock)
+    PhotoMock.expects(:order_by_date)
+    
+    PhotoMock.browse(:title => 'something', :description => 'lorem ipsum dolor', :order_by_date => 'true')
+  end
+  
+  def test_should_raise_invalid_finder_exception_if_somebody_tries_to_browse_by_a_finder_not_specified_in_the_browse_call
+    assert_raise(HasBrowser::InvalidFinder) do
+      PhotoMock.browse(:invalid => 'danger!')
+    end
   end
 end
