@@ -11,7 +11,7 @@ module HasBrowser
       class_inheritable_accessor  :has_browser_allowed_finders
       self.has_browser_allowed_finders = {}
       
-      has_browser_allowed_finders[:without_args] = (args.extract_options! || {})[:without_args] || []
+      has_browser_allowed_finders[:without_args] = args.extract_options![:without_args] || []
       has_browser_allowed_finders[:with_args]    = args
     end
   end
