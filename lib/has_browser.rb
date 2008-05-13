@@ -1,1 +1,3 @@
-# HasBrowser
+module HasBrowser
+  
+end
