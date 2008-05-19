@@ -1,4 +1,6 @@
 module HasBrowser
+  NAME = 'has_browser'
+  
   class InvalidFinder < ArgumentError; end
   
   def self.included(receiver)
