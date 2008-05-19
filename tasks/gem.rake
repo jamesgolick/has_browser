@@ -40,8 +40,8 @@ namespace :gem do
     desc 'Upload gems to rubyforge.org'
     task :rubyforge => :gem do
       sh 'rubyforge login'
-      sh "rubyforge add_release giraffesoft action_messager #{HasBrowser::Version::STRING} pkg/#{spec.full_name}.gem"
-      sh "rubyforge add_file giraffesoft action_messager #{HasBrowser::Version::STRING} pkg/#{spec.full_name}.gem"
+      sh "rubyforge add_release giraffesoft has_browser #{HasBrowser::Version::STRING} pkg/#{spec.full_name}.gem"
+      sh "rubyforge add_file giraffesoft has_browser #{HasBrowser::Version::STRING} pkg/#{spec.full_name}.gem"
     end
   end
 end
