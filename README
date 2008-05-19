@@ -5,7 +5,7 @@ has_browser makes it possible to create simple, parameterized browser interfaces
 
 == Usage
 
-It's a simple plugin, with a simple syntax. Using the canonical blog example, let's imagine we want to create a browse interface to posts. We'd want the user to be able to browse by category, author, or tags. To set up has_browser, we'd do something like this:
+It's a simple plugin, with a simple syntax. Using the canonical blog example, let's imagine we want to create a browse interface to posts. We'd want the user to be able to browse by category, author, or tags, but not to be able to access any of the other finders on the Post model for obvious security reasons. To set up has_browser, we'd do something like this:
 
   has_browser :category, :tags, :author
 
