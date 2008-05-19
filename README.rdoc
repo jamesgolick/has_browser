@@ -1,0 +1,44 @@
+HasBrowser
+==========
+
+has_browser makes it possible to create simple, parameterized browser interfaces to your models. That is, given a set of parameters, return all the models that match.
+
+== Usage
+
+It's a simple plugin, with a simple syntax. Using the canonical blog example, let's imagine we want to create a browse interface to posts. We'd want the user to be able to browse by category, author, or tags. To set up has_browser, we'd do something like this:
+
+  has_browser :category, :tags, :author
+
+Then, assuming the has_finders are already written, the posts can be browsed as follows:
+
+  Post.browse(:category => 'Testing', :tags => 'activerecord', :author => 'james')
+
+In that example, each of the finders requires an argument; has_browser also supports finders that don't. As long as the argumentless finder is present in the browse hash, it will be called:
+
+  has_browser :category, :tags, :author, :without_args => [:order_by_date, :order_by_number_of_comments]
+
+  Post.browse(:category => 'Testing', :tags => 'activerecord', :author => 'james', :order_by_number_of_comments => 'true')
+
+Browse can also be called from association_proxies. For a multi-blog platform, we could easily restrict browsing of posts to the current blog:
+
+  @blog.posts.browse(:category => 'Testing', :tags => 'activerecord', :author => 'james', :order_by_number_of_comments => 'true')
+
+Since has_browser returns the same proxy as has_finder, it is possible to further restrict the results of a browse by chaining finders after the browse call. With our blog, for example, we'd probably want to restrict browsing to published posts.
+
+  @blog.posts.browse(:category => 'Testing', :tags => 'activerecord', :author => 'james', :order_by_number_of_comments => 'true').published
+
+Note: It is not possible to chain finders before the browse call.
+
+Finally, like has_finder, has_browser is compatible with will_paginate out of the box.
+
+== Releases & Development
+
+has_browser will be released as a gem:
+  
+  $ sudo gem install has_browser
+  
+development will continue at {github}[http://github.com/giraffesoft/has_browser]
+
+== Credits & License
+
+Copyright (c) 2008 {James Golick}[http://jamesgolick.com], {GiraffeSoft Inc.}[http://giraffesoft.ca], released under the {MIT License}[http://en.wikipedia.org/wiki/MIT_License]
