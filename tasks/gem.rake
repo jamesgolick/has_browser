@@ -15,7 +15,7 @@ spec = Gem::Specification.new do |s|
   s.required_ruby_version = '>= 1.8.6'
 
   s.files                 = %w(MIT-LICENSE README Rakefile init.rb) +
-                            Dir.glob("{lib,test,tasks}/**/*")
+                            Dir.glob("{lib,test,tasks,rails}/**/*")
                               
   s.require_path          = "lib"
 end
